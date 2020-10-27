@@ -14,5 +14,23 @@
 }
 
 .ImageAuthor {
+    font-weight: bold;
+    font-size: small;
+    text-transform: uppercase;
+    text-decoration: overline;
+    text-decoration-color: rgb(82, 80, 80);
+    text-decoration-style: wavy;
+   text-decoration-thickness: from-font;position: relative;
 
+}
+
+.ImageAuthor::before {
+    content: "";
+    position: absolute;
+    z-index:-1;
+    top: 5px;
+    right: -110px;
+    height: 125%;
+    width: 167%;
+    background-color: rgb(199, 198, 198);
 }
