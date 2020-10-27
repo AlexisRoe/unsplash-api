@@ -19,8 +19,3 @@ main {
   height: 100%;
   padding: 25px;
 }
-
-main > button {
-  margin: 0 auto;
-  display: block;
-}

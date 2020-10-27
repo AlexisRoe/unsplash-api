@@ -1,0 +1,9 @@
+.buttonRandom {
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    border: 1px solid rgb(82, 80, 80);
+    background: none;
+    background-color: rgb(202, 198, 198);
+    color: rgb(82, 80, 80);
+}
