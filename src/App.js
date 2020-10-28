@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getRandomImage } from './api/getRandomImage';
 import ImagePreview from './components/ImagePreview';
 import Button from './components/Button';
+import FavoriteImage from './components/FavoriteImage';
 
 function App() {
     const [randomImage, setRandomImage] = useState(null);
@@ -26,6 +27,11 @@ function App() {
                 id={randomImage.id}
             />
             )}
+            <div>
+                <FavoriteImage 
+                    id={"n1B2cBi141U"}
+                />
+            </div>
         </main>
     );
 }
