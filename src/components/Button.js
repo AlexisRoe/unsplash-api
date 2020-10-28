@@ -1,10 +1,6 @@
 import React from 'react';
-import "./Button.css";
+import './Button.css';
 
-export default function Button({innerText, className}) {
-    return (
-        <button className={className}>
-            {innerText}
-        </button>
-    )
+export default function Button(props) {
+    return <button {...props} />;
 }

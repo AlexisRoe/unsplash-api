@@ -1,18 +1,31 @@
 import './global.css';
+import { useState } from "react";
+import { getRandomImage } from './api/getRandomImage';
 import ImagePreview from './components/ImagePreview';
-import Button from "./components/Button";
+import Button from './components/Button';
 
 function App() {
+    const [randomImage, setRandomImage] = useState(null);
+    
+    async function handleClick() {
+        const randomImageResponse = await getRandomImage();
+        setRandomImage(randomImageResponse);
+    }
+
     return (
         <main>
-            <Button innerText={"Get Random Image"} className={"buttonRandom"} />
+            <Button
+                className={'buttonRandom'}
+                onClick={() => handleClick()}
+            >Get Random Image</Button>
+            {randomImage && (
             <ImagePreview
-                src={
-                    'https://images.unsplash.com/photo-1603712482645-cbd7288bad08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
-                }
-                alt={'Whatever'}
-                author={'no - - One'}
+                src={randomImage.urls.regular}
+                alt={randomImage.alt_description}
+                author={randomImage.user.name}
+                id={randomImage.id}
             />
+            )}
         </main>
     );
 }
