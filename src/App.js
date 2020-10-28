@@ -1,39 +1,31 @@
 import './global.css';
 import ImagePreview from './components/ImagePreview';
+import { useState } from "react";
 import Button from './components/Button';
 import { getRandomImage } from './api/getRandomImage';
 
 function App() {
-    // let imageURL = null;
-
-    // buildImage();
-
-    // async function buildImage() {
-    //     const randomImage = await getRandomImage();
-    //     const urls = randomImage.urls;
-    //     imageURL = urls.regular;
-    //     console.log(imageURL);
-    // }
+    const [randomImage, setRandomImage] = useState(null);
+    
+    async function handleClick() {
+        const randomImageResponse = await getRandomImage();
+        setRandomImage(randomImageResponse);
+    }
 
     return (
         <main>
-            {/* <Button
-                innerText={'Get Random Image'}
-                className={'buttonRandom'}
-                onclick={() => buildImage()}
-            /> */}
             <Button
                 innerText={'Get Random Image'}
                 className={'buttonRandom'}
+                buildImage={() => handleClick()}
             />
+            {randomImage && (
             <ImagePreview
-                src={
-                    'https://images.unsplash.com/photo-1603712482645-cbd7288bad08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
-                }
-                // src={imageURL}
-                alt={'Whatever'}
-                author={'no - - One'}
+                src={randomImage.urls.regular}
+                alt={randomImage.alt_description}
+                author={randomImage.user.name}
             />
+            )}
         </main>
     );
 }

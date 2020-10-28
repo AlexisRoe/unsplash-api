@@ -3,7 +3,7 @@ import "./Button.css";
 
 export default function Button({innerText, className, buildImage}) {
     return (
-        <button className={className} onClick={() => buildImage}>
+        <button className={className} onClick={() => buildImage()}>
             {innerText}
         </button>
     )
