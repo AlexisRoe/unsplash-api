@@ -1,8 +1,8 @@
 import './global.css';
-import ImagePreview from './components/ImagePreview';
 import { useState } from "react";
-import Button from './components/Button';
 import { getRandomImage } from './api/getRandomImage';
+import ImagePreview from './components/ImagePreview';
+import Button from './components/Button';
 
 function App() {
     const [randomImage, setRandomImage] = useState(null);
@@ -15,15 +15,15 @@ function App() {
     return (
         <main>
             <Button
-                innerText={'Get Random Image'}
                 className={'buttonRandom'}
-                buildImage={() => handleClick()}
-            />
+                onClick={() => handleClick()}
+            >Get Random Image</Button>
             {randomImage && (
             <ImagePreview
                 src={randomImage.urls.regular}
                 alt={randomImage.alt_description}
                 author={randomImage.user.name}
+                id={randomImage.id}
             />
             )}
         </main>
