@@ -14,10 +14,13 @@ export default function ImagePreview({ src, alt, author, id }) {
             contentStorage = [];
         }
         if (!contentStorage.includes(id)) {
-            contentStorage.push(id);
-            // const newFavorites = [...contentStorage, id];
-            // localStorage.setItem("favorites", JSON.stringify(newFavorites));
-            localStorage.setItem(storageName, JSON.stringify(contentStorage));
+            // contentStorage.push(id);
+            // localStorage.setItem(storageName, JSON.stringify(contentStorage));
+            const newFavorites = [...contentStorage, id]; // if in array is an immutable value, push is not accessable
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        } else {
+            const newFavorites = contentStorage.filter((favorite) => favorite !== id);
+            localStorage.setItem(storageName, JSON.stringify(newFavorites));
         }
     }
 
