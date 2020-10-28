@@ -24,7 +24,7 @@ function FavoriteImage({ photoId }) {
             </Button>
             <img
                 className='Image-small'
-                src={`https://source.unsplash.com/${photoId}/800x600`}
+                src={`https://source.unsplash.com/${photoId}`}
                 alt='favoriteOne'
             />
         </div>
