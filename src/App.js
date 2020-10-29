@@ -3,16 +3,29 @@ import { useState } from "react";
 import { getRandomImage } from "./api/getRandomImage";
 import ImagePreview from "./components/ImagePreview";
 import Button from "./components/Button";
-import FavoriteImage from "./components/FavoriteImage";
 import FavoriteImageList from "./components/FavoriteImageList";
 
 function App() {
+  const storageName = "favorites";
   const [randomImage, setRandomImage] = useState(null);
 
   async function handleClick() {
     const randomImageResponse = await getRandomImage();
     setRandomImage(randomImageResponse);
   }
+
+  const [favoriteImg, setFavoriteImg] = useState([]);
+
+  setFavoriteImg(function () {
+    let photoIDs = null;
+    try {
+      photoIDs = JSON.parse(localStorage.getItem(storageName)) || [];
+    } catch (error) {
+      console.error(error);
+      photoIDs = [];
+    }
+    return photoIDs;
+  });
 
   return (
     <main id="mainContainer">
@@ -27,10 +40,7 @@ function App() {
           id={randomImage.id}
         />
       )}
-      <FavoriteImageList
-        photoIds={["UjD08DRW24E", "k38v31SkZdo", "AW_P_NU9MI8"]}
-      />
-      ;{/* <FavoriteImage photoId={'n1B2cBi141U'} /> */}
+      <FavoriteImageList photoIds={favoriteImg} />
     </main>
   );
 }
