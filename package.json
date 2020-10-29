@@ -42,8 +42,8 @@
       "pre-push": "npm run test:once"
     }
   },
-   "devDependencies": {
-     "husky": "^4.3.0"
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "husky": "^4.3.0"
   }
-              
 }
