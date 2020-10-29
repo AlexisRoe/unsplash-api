@@ -1,19 +1,12 @@
 import React from "react";
 import Button from "./Button";
 import "./FavoriteImage.css";
+import getFavorites from "../api/getFavorites";
 
 function FavoriteImage({ photoId }) {
-  const storageName = "favorites";
-
   function deleteFavorite(photoId) {
-    let contentStorage = null;
-    try {
-      contentStorage = JSON.parse(localStorage.getItem(storageName)) || [];
-    } catch (error) {
-      console.error(error);
-      contentStorage = [];
-    }
-    const newFavorites = contentStorage.filter(
+    const storageName = "favorites";
+    const newFavorites = getFavorites().filter(
       (favorite) => favorite !== photoId
     );
     localStorage.setItem(storageName, JSON.stringify(newFavorites));

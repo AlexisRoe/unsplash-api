@@ -4,9 +4,9 @@ import { getRandomImage } from "./api/getRandomImage";
 import ImagePreview from "./components/ImagePreview";
 import Button from "./components/Button";
 import FavoriteImageList from "./components/FavoriteImageList";
+import getFavorites from "./api/getFavorites";
 
 function App() {
-  const storageName = "favorites";
   const [randomImage, setRandomImage] = useState(null);
 
   async function handleClick() {
@@ -14,9 +14,10 @@ function App() {
     setRandomImage(randomImageResponse);
   }
 
-  const [favoriteImg, setFavoriteImg] = useState([]);
-
-  setFavoriteImg(function () {
+  /* const [favoriteImg, setFavoriteImg] = useState([]);
+  
+  setFavoriteImg(() => {
+    const storageName = "favorites";
     let photoIDs = null;
     try {
       photoIDs = JSON.parse(localStorage.getItem(storageName)) || [];
@@ -25,7 +26,9 @@ function App() {
       photoIDs = [];
     }
     return photoIDs;
-  });
+  }); */
+
+  const favorites = getFavorites();
 
   return (
     <main id="mainContainer">
@@ -40,7 +43,7 @@ function App() {
           id={randomImage.id}
         />
       )}
-      <FavoriteImageList photoIds={favoriteImg} />
+      <FavoriteImageList photoIds={favorites} />
     </main>
   );
 }
